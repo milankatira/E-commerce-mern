@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: 'Zen Kaku Gothic Antique', sans-serif;
+  slider:-webkit-none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
