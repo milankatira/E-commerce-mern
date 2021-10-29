@@ -40,6 +40,7 @@ export default Navbar;
 
 const Container = styled.div`
   height: 60px;
+  padding-bottom: 25px;
 `;
 
 const Wrapper = styled.div`
