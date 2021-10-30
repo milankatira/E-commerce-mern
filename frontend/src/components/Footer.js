@@ -7,6 +7,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import RoomIcon from "@mui/icons-material/Room";
 import CallIcon from "@mui/icons-material/Call";
 import MailIcon from "@mui/icons-material/Mail";
+import { mobile } from "../responsive";
+
 const Footer = () => {
   return (
     <Container>
@@ -70,6 +72,7 @@ export default Footer;
 
 const Container = styled.div`
   display: flex;
+  ${mobile({ flexDirection: "column" })}
 `;
 const Left = styled.div`
   flex: 1;
@@ -80,6 +83,7 @@ const Left = styled.div`
 const Center = styled.div`
   flex: 1;
   padding: 20px;
+  ${mobile({ display: "none" })}
 `;
 
 const Title = styled.h3`
@@ -102,6 +106,7 @@ const ListItem = styled.li`
 const Right = styled.div`
   flex: 1;
   padding: 20px;
+  ${mobile({ backgroundColor: "#fff8f8" })}
 `;
 
 const Logo = styled.h1``;

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { mobile } from "../responsive";
 const Register = () => {
   return (
     <Container>
@@ -13,7 +14,8 @@ const Register = () => {
           <Input placeholder="password" />
           <Input placeholder="confirm password" />
           <Agreement>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.Aliquam nisi eos numquam modi quas dicta!
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.Aliquam
+            nisi eos numquam modi quas dicta!
             <b>PRIVACY POLICY</b>
           </Agreement>
           <Button>create</Button>
@@ -44,6 +46,7 @@ const Wrapper = styled.div`
   width: 40%;
   background-color: #fff;
   border-radius: 5px;
+  ${mobile({ width: "75%" })}
 `;
 
 const Title = styled.h1`
