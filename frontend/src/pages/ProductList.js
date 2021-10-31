@@ -6,11 +6,11 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Products from "../components/Products";
 import { mobile } from "../responsive";
-//import { useLocation } from "react-router";
+import { useLocation } from "react-router";
 const ProductList = () => {
-    // const location = useLocation();
-    // const cat = location.pathname.split("/")[2];
-  
+  const location = useLocation();
+  const cat = location.pathname.split("/")[2];
+
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("newest");
 
@@ -32,6 +32,7 @@ const ProductList = () => {
           <FilterText />
           filter products{" "}
         </Filter>
+
         <Select name="color" onChange={handleFilters}>
           <Option disabled>Color</Option>
           <Option>white</Option>
@@ -41,6 +42,7 @@ const ProductList = () => {
           <Option>yellow</Option>
           <Option>green</Option>
         </Select>
+
         <Select name="size" onChange={handleFilters}>
           <Option disabled>Size</Option>
           <Option>XS</Option>
@@ -59,11 +61,7 @@ const ProductList = () => {
           <Option value="desc">Price (desc)</Option>
         </Select>
       </FilterContainer>
-      <Products 
-      
-    //   cat={cat} filters={filters} sort={sort}
-      
-      />
+      <Products cat={cat} filters={filters} sort={sort} />
       <Newsletter />
       <Footer />
     </Container>
@@ -95,8 +93,8 @@ const FilterText = styled.span`
   ${mobile({ marginRight: "0px" })}
 `;
 const Select = styled.select`
-padding: 20px;
-margin-right: 20px;
-${mobile({ margin: "10px 0px" })}
+  padding: 20px;
+  margin-right: 20px;
+  ${mobile({ margin: "10px 0px" })}
 `;
 const Option = styled.option``;
