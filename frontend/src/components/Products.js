@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { popularProducts } from "../data";
+//import { popularProducts } from "../data";
 import styled from "styled-components";
 import Product from "./Product";
 import axios from "axios";
@@ -11,17 +11,31 @@ const Products = ({ cat, filters, sort }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/product");
-        console.log(res);
-      } catch (err) {
-        console.log("error ++++++++++++");
-      }
+        const res = await axios.get(
+          cat
+            ? `http://localhost:5000/api/product?category=${cat}`
+            : "http://localhost:5000/api/product"
+        );
+        setProduct(res.data);
+      } catch (err) {}
       getProducts();
     };
   }, [cat]);
+
+  useEffect(() => {
+  cat&&
+  setFilterproduct(
+    product.filter((item) => 
+      Object.entries(filters).every(([key, value]) =>
+        item[key].includes(value)
+      )
+    )
+  )
+  }, [product,cat, filters]);
+
   return (
     <Container>
-      {popularProducts.map((item) => (
+      {filterproduct.map((item) => (
         <Product item={item} key={item.id} />
       ))}
     </Container>

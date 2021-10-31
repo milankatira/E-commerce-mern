@@ -34,7 +34,7 @@ app.use("/api/user", user);
 app.use("/api/auth", auth);
 
 app.use("/api/product", product);
-cd
+
 app.use("/api/order", order);
 
 app.use("/api/cart", cart);
