@@ -7,9 +7,12 @@ import Newsletter from "../components/Newsletter";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { mobile } from "../responsive";
+import {useLocation} from 'react-router-dom';
 
 
 const Product = () => {
+const  location=useLocation();
+const id=location.pathname.split('/')[2];
   return (
     <Container>
       <Navbar />

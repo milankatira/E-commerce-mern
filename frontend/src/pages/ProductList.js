@@ -26,7 +26,7 @@ const ProductList = () => {
     <Container>
       <Announcement />
       <Navbar />
-      <Title>dresses</Title>
+      <Title>{cat}</Title>
       <FilterContainer>
         <Filter>
           <FilterText />

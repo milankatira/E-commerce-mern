@@ -23,21 +23,32 @@ const Products = ({ cat, filters, sort }) => {
   }, [cat]);
 
   useEffect(() => {
-  cat&&
-  setFilterproduct(
-    product.filter((item) => 
-      Object.entries(filters).every(([key, value]) =>
-        item[key].includes(value)
-      )
-    )
-  )
-  }, [product,cat, filters]);
+    cat &&
+      setFilterproduct(
+        product.filter((item) =>
+          Object.entries(filters).every(([key, value]) =>
+            item[key].includes(value)
+          )
+        )
+      );
+  }, [product, cat, filters]);
 
+  useEffect(() => {
+    if (sort === "newest") {
+      setFilterproduct((prev) =>
+        [...prev].sort((a, b) => a.createdAt - b.createdAt)
+      );
+    } else if (sort === "asc") {
+      setFilterproduct((prev) => [...prev].sort((a, b) => a.price - b.price));
+    } else {
+      setFilterproduct((prev) => [...prev].sort((a, b) => b.price - a.price));
+    }
+  });
   return (
     <Container>
-      {filterproduct.map((item) => (
-        <Product item={item} key={item.id} />
-      ))}
+      {cat
+        ? filterproduct.map((item) => <Product item={item} key={item.id} />)
+        : product.slice(0,8).map((item) => <Product item={item} key={item.id} />)}
     </Container>
   );
 };
