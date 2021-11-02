@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
@@ -7,12 +7,38 @@ import Newsletter from "../components/Newsletter";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { mobile } from "../responsive";
-import {useLocation} from 'react-router-dom';
-
+import { useLocation } from "react-router-dom";
+import { publicrequest } from "../requestMethods";
 
 const Product = () => {
-const  location=useLocation();
-const id=location.pathname.split('/')[2];
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  const [color,setColor]=useState('')
+  const [size,setSize]=useState('')
+
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+  quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  useEffect =
+    (() => {
+      const getProduct = async () => {
+        try {
+          const res = await publicrequest.get("/product/find/" + id);
+          setProduct(res.data);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      getProduct();
+    },
+    [id]);
   return (
     <Container>
       <Navbar />
@@ -50,10 +76,10 @@ const id=location.pathname.split('/')[2];
 
           <AddContainer>
             <AmountContainer>
-              <RemoveIcon />
+              <RemoveIcon onClick={() => handleQuantity("dec")} />
 
               <Amount> 1</Amount>
-              <AddIcon />
+              <AddIcon onClick={() => handleQuantity("inc")} />
             </AmountContainer>
             <Button>ADD TO CART</Button>
           </AddContainer>
